@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('id_pelamar')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_lowongan');
             $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
-            $table->string('status');
+            $table->string('status')->default('Diajukan');
+            $table->string('file');
             $table->timestamps();
         });
     }

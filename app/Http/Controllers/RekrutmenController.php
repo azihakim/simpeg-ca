@@ -12,7 +12,11 @@ class RekrutmenController extends Controller
 {
     public function lowonganIndex()
     {
-        $lowongan = Lowongan::all();
+        if (auth()->user()->jabatan == 'Pelamar') {
+            $lowongan = Lowongan::where('status', 'Aktif')->get();
+        } else {
+            $lowongan = Lowongan::all();
+        }
         return view('rekrutmen.lowongan.index', compact('lowongan'));
     }
 
@@ -70,6 +74,48 @@ class RekrutmenController extends Controller
         } catch (\Exception $e) {
             Log::error('Error deleting lowongan: ' . $e->getMessage());
             return redirect()->route('lowongan.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+
+    // LAMARAN
+    public function lamaranIndex()
+    {
+        $lamaran = Rekrutmen::all();
+        return view('rekrutmen.lamaran.index', compact('lamaran'));
+    }
+
+    public function lamaranRegist($id)
+    {
+        $lowongan = Lowongan::find($id);
+        return view('rekrutmen.lamaran.regist', compact('lowongan'));
+    }
+
+    public function lamaranStore(Request $request)
+    {
+        $request->validate([
+            'id_lowongan' => 'required',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:5048',
+        ]);
+        try {
+            // Handle file upload
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = auth()->user()->nama . '_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('lamaran_files', $filename, 'public');
+            }
+
+            // Create Rekrutmen entry
+            Rekrutmen::create([
+                'id_lowongan' => $request->id_lowongan,
+                'id_pelamar' => auth()->id(),
+                'file' => $filename,
+            ]);
+
+            return redirect()->route('lamaran.index')->with('success', 'Lamaran berhasil dibuat');
+        } catch (\Exception $e) {
+            Log::error('Error creating lamaran: ' . $e->getMessage());
+            return redirect()->route('lamaran.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 }

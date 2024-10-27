@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Jabatan;
 use App\Models\Lowongan;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +22,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::create([
+            'nama' => 'Test User',
+            'username' => 'test',
+            'password' => bcrypt('123'),
+            'jabatan' => 'Pelamar'
+        ]);
 
         Lowongan::create(
             [

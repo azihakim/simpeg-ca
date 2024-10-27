@@ -3,8 +3,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>LOWONGAN</h1>
-				<p>Daftar Lowongan kerja</p>
+				<h1>LAMARAN</h1>
+				<p>Daftar Lamaran</p>
 			</div>
 		</div>
 		@if (session('success'))
@@ -23,47 +23,29 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
 							<div>
-								<h4 class="card-title">List Lowongan</h4>
-							</div>
-							<div>
-								<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary btn-icon-text">
-									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Lowongan</a>
+								<h4 class="card-title">List Lamaran</h4>
 							</div>
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
 								<tr>
-									<th>Jabatan</th>
+									<th>Pelamar</th>
 									<th>Status</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($lowongan as $item)
+								@foreach ($lamaran as $item)
 									<tr>
-										<td>{{ $item->jabatan }}</td>
-										<td style="text-align: center">
-											@if ($item->status == 'Aktif')
-												<label class="badge badge-primary">{{ $item->status }}</label>
-											@else
+										<td>{{ $item->user->nama }}</td>
+										<td>
+											@if ($item->status == 'Diajukan')
+												<label class="badge badge-warning">{{ $item->status }}</label>
+											@elseif ($item->status == 'Ditolak')
 												<label class="badge badge-danger">{{ $item->status }}</label>
 											@endif
 										</td>
-										@if (Auth::user()->jabatan == 'Pelamar')
-											<td style="text-align: center">
-												<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-outline-info btn-block">Daftar</a>
-											</td>
-										@else
-											<td style="text-align: center">
-												<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
-												<form action="{{ route('lowongan.destroy', $item->id) }}" method="post" style="display: inline">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="btn btn-danger">Hapus</button>
-												</form>
-											</td>
-										@endif
-
+										<td></td>
 									</tr>
 								@endforeach
 							</tbody>

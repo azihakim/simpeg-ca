@@ -51,16 +51,17 @@
 					</a>
 				</li>
 				<li class="pt-2 pb-1">
-					<span class="nav-item-head">Template Pages</span>
+					<span class="nav-item-head">Dashboard</span>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">
+					<a class="nav-link" href="{{ route('dashboard') }}">
 						<i class="mdi mdi-compass-outline menu-icon"></i>
 						<span class="menu-title">Dashboard</span>
 					</a>
 				</li>
+
 				<li class="pt-2 pb-1">
-					<span class="nav-item-head">UI Elements</span>
+					<span class="nav-item-head">Rekrutmen</span>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -71,7 +72,7 @@
 					<div class="collapse" id="ui-basic">
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Lamaran</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('lamaran.index') }}">Lamaran</a></li>
 						</ul>
 					</div>
 				</li>
@@ -93,12 +94,21 @@
 						<li class="nav-item nav-profile dropdown d-none d-md-block">
 							<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
 								aria-expanded="false">
-								<div class="nav-profile-text">Users &nbsp;</div>
+								<div class="nav-profile-text">@auth
+										{{ Auth::user()->nama }} - {{ Auth::user()->jabatan }}
+									@endauth &nbsp;</div>
 								<i class="fa fa-user-circle-o"></i>
 							</a>
 							<div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-								<a class="dropdown-item" href="#">
-									<i class="flag-icon flag-icon-bl me-3"></i>Log Out </a>
+								{{-- <a class="dropdown-item" href="#">
+									<i class="flag-icon flag-icon-bl me-3"></i>Log Out </a> --}}
+								<a class="dropdown-item" href="{{ route('logout') }}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+									{{ __('Log Out') }}
+								</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>
 							</div>
 						</li>
 					</ul>
