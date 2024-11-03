@@ -14,4 +14,9 @@ class Rekrutmen extends Model
     {
         return $this->belongsTo(User::class, 'id_pelamar');
     }
+
+    function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan');
+    }
 }

@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('status')->nullable();
             $table->string('status_kerja')->nullable();
+            $table->string('nik')->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('umur')->nullable();
+            $table->string('jenis_kelamin')->nullable();
             $table->string('username')->unique();
             $table->string('password');
             $table->timestamps();

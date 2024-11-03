@@ -34,8 +34,8 @@ class CheckLogin
                     }
                     break;
                 default:
-                    if (!$request->routeIs('home')) {
-                        return redirect()->route('home');
+                    if (!$request->routeIs('dashboard')) {
+                        return redirect()->route('dashboard');
                     }
                     break;
             }

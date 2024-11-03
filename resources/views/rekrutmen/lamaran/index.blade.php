@@ -30,6 +30,7 @@
 							<thead>
 								<tr>
 									<th>Pelamar</th>
+									<th>Jabatan</th>
 									<th>Status</th>
 									<th>Aksi</th>
 								</tr>
@@ -38,14 +39,44 @@
 								@foreach ($lamaran as $item)
 									<tr>
 										<td>{{ $item->user->nama }}</td>
+										<td>{{ $item->lowongan->jabatan }}</td>
 										<td>
 											@if ($item->status == 'Diajukan')
 												<label class="badge badge-warning">{{ $item->status }}</label>
 											@elseif ($item->status == 'Ditolak')
 												<label class="badge badge-danger">{{ $item->status }}</label>
+											@elseif ($item->status == 'Diterima')
+												<label class="badge badge-success">{{ $item->status }}</label>
 											@endif
 										</td>
-										<td></td>
+										<td>
+											@if ($item->status == 'Diajukan')
+												<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
+											@endif
+											<div class="dropdown">
+												<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+													data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Respon</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+													<h6 class="dropdown-header">Cek Lamaran</h6>
+													<a class="dropdown-item" href="#">Cek Berkas</a>
+													<div class="dropdown-divider"></div>
+
+													<h6 class="dropdown-header">Ubah Status</h6>
+													<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+														@csrf
+														@method('PUT')
+														<input type="hidden" name="status" value="Ditolak">
+														<button class="dropdown-item" type="submit">Tolak</button>
+													</form>
+													<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+														@csrf
+														@method('PUT')
+														<input type="hidden" name="status" value="Diterima">
+														<button class="dropdown-item" type="submit">Terima</button>
+													</form>
+												</div>
+											</div>
+										</td>
 									</tr>
 								@endforeach
 							</tbody>

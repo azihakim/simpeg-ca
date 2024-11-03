@@ -27,8 +27,7 @@
 
 	{{-- datatable --}}
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-	<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
 
 	@yield('css')
 </head>
@@ -64,15 +63,32 @@
 					<span class="nav-item-head">Rekrutmen</span>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+					<a class="nav-link" data-bs-toggle="collapse" href="#rekrutmen" aria-expanded="false" aria-controls="rekrutmen">
 						<i class="fa fa-address-book-o menu-icon"></i>
 						<span class="menu-title">Rekrutmen</span>
 						<i class="menu-arrow"></i>
 					</a>
-					<div class="collapse" id="ui-basic">
+					<div class="collapse" id="rekrutmen">
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('lamaran.index') }}">Lamaran</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li class="pt-2 pb-1">
+					<span class="nav-item-head">Karyawan</span>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false" aria-controls="karyawan">
+						<i class="fa fa-users menu-icon"></i>
+						<span class="menu-title">Karyawan</span>
+						<i class="menu-arrow"></i>
+					</a>
+					<div class="collapse" id="karyawan">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
 						</ul>
 					</div>
 				</li>
@@ -137,10 +153,11 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
+	<!-- container-scroller -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 	@yield('js')
-
-	<!-- container-scroller -->
 	<!-- plugins:js -->
 	<script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 	<script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
@@ -170,6 +187,8 @@
 	<script src="{{ asset('assets/js/typeahead.js') }}"></script>
 	<script src="{{ asset('assets/js/select2.js') }}"></script>
 	<!-- End custom js for this page -->
+
+
 </body>
 
 </html>

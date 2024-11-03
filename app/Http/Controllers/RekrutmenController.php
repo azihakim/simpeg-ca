@@ -118,4 +118,58 @@ class RekrutmenController extends Controller
             return redirect()->route('lamaran.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
+    public function lamaranEdit($id)
+    {
+        $data = Rekrutmen::find($id);
+        return view('rekrutmen.lamaran.edit', compact('data'));
+    }
+
+    public function lamaranUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'id_lowongan' => 'required',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:5048',
+        ]);
+
+        try {
+            $data = [
+                'id_lowongan' => $request->id_lowongan,
+            ];
+
+            // Handle file upload
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = auth()->user()->nama . '_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('lamaran_files', $filename, 'public');
+                $data['file'] = $filename;
+            }
+
+            // Update Rekrutmen entry
+            Rekrutmen::find($id)->update($data);
+
+            return redirect()->back()->with('success', 'Lamaran berhasil diupdate');
+        } catch (\Exception $e) {
+            Log::error('Error updating lamaran: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function lamaranStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        try {
+            Rekrutmen::find($id)->update([
+                'status' => $request->status,
+            ]);
+
+            return redirect()->back()->with('success', 'Status lamaran berhasil diupdate');
+        } catch (\Exception $e) {
+            Log::error('Error updating lamaran status: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 }

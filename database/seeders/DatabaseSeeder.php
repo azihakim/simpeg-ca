@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Jabatan;
 use App\Models\Lowongan;
+use App\Models\Rekrutmen;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,9 +26,15 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'nama' => 'Test User',
+            'jabatan' => 'Pelamar',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
             'username' => 'test',
             'password' => bcrypt('123'),
-            'jabatan' => 'Pelamar'
         ]);
 
         Lowongan::create(
@@ -37,6 +44,14 @@ class DatabaseSeeder extends Seeder
                 'deskripsi' => 'Membuat aplikasi berbasis web'
             ]
         );
+
+        Rekrutmen::create([
+            'id_pelamar' => 1,
+            'id_lowongan' => 1,
+            'status' => 'Diterima',
+            'file' => 'file.pdf',
+        ]);
+
         $jabatan = [
             [
                 'jabatan' => 'Software Engineer'
