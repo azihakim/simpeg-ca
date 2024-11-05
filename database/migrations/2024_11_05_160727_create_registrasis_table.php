@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensis', function (Blueprint $table) {
+        Schema::create('registrasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_karyawan');
-            $table->foreign('id_karyawan')->references('id')->on('users')->onDelete('cascade');
-            $table->string('lokasi');
-            $table->string('keterangan');
-            $table->string('foto');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensis');
+        Schema::dropIfExists('registrasis');
     }
 };

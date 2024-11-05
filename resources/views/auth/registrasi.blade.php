@@ -33,23 +33,21 @@
 								<img src="../../assets/images/logo.svg">
 							</div> --}}
 							<h4>SIMPEG</h4>
-							<h6 class="fw-light">Sistem Kepegawaian</h6>
-							<form class="pt-3" method="POST" action="{{ route('login') }}">
+							<h6 class="fw-light">Registrasi Calon Karyawan</h6>
+							<form class="pt-3" method="POST" action="{{ route('registrasi.form') }}">
 								@csrf
 								<div class="form-group">
 									<input type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
 										placeholder="Username">
 								</div>
 								<div class="form-group">
-									<input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1"
-										placeholder="Password">
+									<input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1">
 								</div>
 								<div class="mt-3 d-grid gap-2">
 									<button class="btn btn-block btn-primary btn-lg fw-semibold auth-form-btn">Log In</button>
 								</div>
 
-								<div class="text-center mt-4 fw-light"> Calon Karyawan? <a href="{{ route('registrasi.form') }}"
-										class="text-primary">Daftar</a>
+								<div class="text-center mt-4 fw-light"> Calon Karyawan? <a href="register.html" class="text-primary">Daftar</a>
 								</div>
 							</form>
 						</div>

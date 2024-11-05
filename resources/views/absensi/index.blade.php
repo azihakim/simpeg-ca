@@ -1,4 +1,7 @@
 @extends('master')
+@section('css')
+	{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+@endsection
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -25,22 +28,42 @@
 							<div>
 								<h4 class="card-title">List Karyawn</h4>
 							</div>
-							<div>
+							{{-- <div>
 								<a href="" class="btn btn-outline-primary btn-icon-text">
 									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
-							</div>
+							</div> --}}
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								Absen
+							</button>
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
 								<tr>
-									<th>Status</th>
 									<th>Nama</th>
-									<th>Status Kerja</th>
-									<th>NIK</th>
-									<th>Aksi</th>
+									<th>Keterangan</th>
+									<th>Tanggal</th>
+									<th>Lokasi</th>
+									<th>Foto</th>
 								</tr>
 							</thead>
 							<tbody>
+								@foreach ($data as $item)
+									<tr>
+										<td>{{ $item->user->nama }}</td>
+										<td>{{ $item->keterangan }}</td>
+										<td>{{ $item->created_at->format('d-m-Y') }}</td>
+										<td>
+											<a href="{{ $item->lokasi }}" target="_blank">Cek</a>
+										</td>
+										<td>
+											@if ($item->foto)
+												<img src="{{ asset('storage/absensi/' . $item->foto) }}" alt="foto" width="100">
+											@else
+												-
+											@endif
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
@@ -48,6 +71,8 @@
 			</div>
 		</div>
 	</div>
+
+	@include('absensi.modalAbsen')
 @endsection
 
 @section('js')

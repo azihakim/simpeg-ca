@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RekrutmenController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
     });
 });
+Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');
+Route::post('/registrasi', [RegistrasiController::class, 'store'])->name('registrasi.store');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
