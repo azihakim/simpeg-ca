@@ -31,15 +31,16 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'pelamar' => 'required|exists:users,id',
-            'nama' => 'required|string|max:255',
-            'umur' => 'required|numeric',
-            'jenis_kelamin' => 'required|string',
-            'telepon' => 'required|string|max:15',
-            'status_kerja' => 'required|string',
-            'nik' => 'required|string|max:20',
-        ]);
+        // dd($request->all());
+        // $request->validate([
+        //     'pelamar' => 'required|exists:users,id',
+        //     'nama' => 'required|string|max:255',
+        //     'umur' => 'required|numeric',
+        //     'jenis_kelamin' => 'required|string',
+        //     'telepon' => 'required|string|max:15',
+        //     'status_kerja' => 'required|string',
+        //     'nik' => 'required|string|max:20',
+        // ]);
 
         try {
             // Find the user by pelamar ID

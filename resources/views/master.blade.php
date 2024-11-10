@@ -39,59 +39,63 @@
 			<ul class="nav">
 				<li class="nav-item nav-profile border-bottom">
 					<a href="#" class="nav-link flex-column">
-						<div class="nav-profile-image">
+						{{-- <div class="nav-profile-image">
 							<img src="assets/images/faces/face1.jpg" alt="profile">
-							<!--change to offline or busy as needed-->
-						</div>
+						</div> --}}
 						<div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
-							<span class="fw-semibold mb-1 mt-2 text-center">Antonio Olson</span>
-							<span class="text-secondary icon-sm text-center">$3499.00</span>
+							<span class="fw-semibold mb-1 mt-2 text-center" style="font-size:35px">SIMPEG</span>
+							<span class="text-secondary icon-sm text-center" style="font-size:10px">PT SELARAS SIMPATI NUSANTARA</span>
 						</div>
 					</a>
 				</li>
-				<li class="pt-2 pb-1">
-					<span class="nav-item-head">Dashboard</span>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('dashboard') }}">
-						<i class="mdi mdi-compass-outline menu-icon"></i>
-						<span class="menu-title">Dashboard</span>
-					</a>
-				</li>
+				@if (Auth::user()->jabatan != 'Pelamar')
+					<li class="pt-2 pb-1">
+						<span class="nav-item-head">Dashboard</span>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('dashboard') }}">
+							<i class="mdi mdi-compass-outline menu-icon"></i>
+							<span class="menu-title">Dashboard</span>
+						</a>
+					</li>
+				@endif
+				@if (Auth::user()->jabatan != 'Karyawan')
+					<li class="pt-2 pb-1">
+						<span class="nav-item-head">Rekrutmen</span>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#rekrutmen" aria-expanded="false" aria-controls="rekrutmen">
+							<i class="fa fa-address-book-o menu-icon"></i>
+							<span class="menu-title">Rekrutmen</span>
+							<i class="menu-arrow"></i>
+						</a>
+						<div class="collapse" id="rekrutmen">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a></li>
+								<li class="nav-item"> <a class="nav-link" href="{{ route('lamaran.index') }}">Lamaran</a></li>
+							</ul>
+						</div>
+					</li>
+				@endif
 
-				<li class="pt-2 pb-1">
-					<span class="nav-item-head">Rekrutmen</span>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="collapse" href="#rekrutmen" aria-expanded="false" aria-controls="rekrutmen">
-						<i class="fa fa-address-book-o menu-icon"></i>
-						<span class="menu-title">Rekrutmen</span>
-						<i class="menu-arrow"></i>
-					</a>
-					<div class="collapse" id="rekrutmen">
-						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('lamaran.index') }}">Lamaran</a></li>
-						</ul>
-					</div>
-				</li>
-
-				<li class="pt-2 pb-1">
-					<span class="nav-item-head">Karyawan</span>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false" aria-controls="karyawan">
-						<i class="fa fa-users menu-icon"></i>
-						<span class="menu-title">Karyawan</span>
-						<i class="menu-arrow"></i>
-					</a>
-					<div class="collapse" id="karyawan">
-						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
-						</ul>
-					</div>
-				</li>
+				@if (Auth::user()->jabatan != 'Pelamar')
+					<li class="pt-2 pb-1">
+						<span class="nav-item-head">Karyawan</span>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false" aria-controls="karyawan">
+							<i class="fa fa-users menu-icon"></i>
+							<span class="menu-title">Karyawan</span>
+							<i class="menu-arrow"></i>
+						</a>
+						<div class="collapse" id="karyawan">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
+								<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
+							</ul>
+						</div>
+					</li>
+				@endif
 			</ul>
 		</nav>
 		<!-- partial -->

@@ -82,6 +82,9 @@ class RekrutmenController extends Controller
     public function lamaranIndex()
     {
         $lamaran = Rekrutmen::all();
+        if (auth()->user()->jabatan == 'Pelamar') {
+            $lamaran = Rekrutmen::where('id_pelamar', auth()->id())->get();
+        }
         return view('rekrutmen.lamaran.index', compact('lamaran'));
     }
 

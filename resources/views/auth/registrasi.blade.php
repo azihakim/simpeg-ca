@@ -28,26 +28,52 @@
 			<div class="content-wrapper d-flex align-items-center auth">
 				<div class="row flex-grow">
 					<div class="col-lg-4 mx-auto">
+						@if (session('error'))
+							<div class="alert alert-danger">
+								Username Sudah Pernah Ada, Silahkan Gunakan Username Lain!!!
+							</div>
+						@endif
 						<div class="auth-form-light text-left p-5">
 							{{-- <div class="brand-logo">
 								<img src="../../assets/images/logo.svg">
 							</div> --}}
 							<h4>SIMPEG</h4>
 							<h6 class="fw-light">Registrasi Calon Karyawan</h6>
-							<form class="pt-3" method="POST" action="{{ route('registrasi.form') }}">
+							<form class="pt-3" method="POST" action="{{ route('registrasi.store') }}" action="POST">
 								@csrf
 								<div class="form-group">
-									<input type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Username">
+									<input type="text" name="nama" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Nama" required>
 								</div>
 								<div class="form-group">
-									<input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1">
+									<input type="number" name="umur" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Umur" required>
+								</div>
+								<div class="form-group">
+									<select name="jenis_kelamin" class="form-control form-control-lg" id="exampleInputEmail1" required>
+										<option value="" disabled selected>Jenis Kelamin</option>
+										<option value="Laki-laki">Laki-laki</option>
+										<option value="Perempuan">Perempuan</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" name="telepon" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Telepon" required>
+								</div>
+								<div class="form-group">
+									<input type="text" name="alamat" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Alamat" required>
+								</div>
+								<div class="form-group">
+									<input type="text" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Username" required>
+								</div>
+								<div class="form-group">
+									<input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" required
+										placeholder="Password">
 								</div>
 								<div class="mt-3 d-grid gap-2">
-									<button class="btn btn-block btn-primary btn-lg fw-semibold auth-form-btn">Log In</button>
-								</div>
-
-								<div class="text-center mt-4 fw-light"> Calon Karyawan? <a href="register.html" class="text-primary">Daftar</a>
+									<button class="btn btn-block btn-primary btn-lg fw-semibold auth-form-btn">Daftar</button>
 								</div>
 							</form>
 						</div>

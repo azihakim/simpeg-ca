@@ -24,13 +24,13 @@ class CheckLogin
         if ($user) {
             switch ($user->jabatan) {
                 case 'Pelamar':
-                    if (!$request->routeIs('dashboard')) {
-                        return redirect()->route('dashboard');
+                    if ($request->routeIs('dashboard')) {
+                        return redirect()->route('lowongan.index');
                     }
                     break;
-                case 'Admin':
-                    if (!$request->routeIs('admin')) {
-                        return redirect()->route('admin');
+                case 'Karyawan':
+                    if (!$request->routeIs('dashboard')) {
+                        return redirect()->route('dashboard');
                     }
                     break;
                 default:
