@@ -94,6 +94,7 @@
 									<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
 								@endif
 								<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
+								<li class="nav-item"> <a class="nav-link" href="{{ route('cutiizin.index') }}">Cuti/Izin</a></li>
 							</ul>
 						</div>
 					</li>
