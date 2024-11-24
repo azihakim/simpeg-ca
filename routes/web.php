@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [AbsensiController::class, 'edit'])->name('absensi.edit');
         Route::put('/update/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
         Route::delete('/destroy/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
+        Route::post('/rekap', [AbsensiController::class, 'rekap'])->name('absensi.rekap');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');

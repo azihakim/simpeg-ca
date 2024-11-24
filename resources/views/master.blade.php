@@ -90,7 +90,9 @@
 						</a>
 						<div class="collapse" id="karyawan">
 							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
+								@if (Auth::user()->jabatan != 'Karyawan')
+									<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
+								@endif
 								<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
 							</ul>
 						</div>

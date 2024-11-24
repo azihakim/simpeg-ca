@@ -25,7 +25,20 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'nama' => 'Test User',
+            'nama' => 'Admin',
+            'jabatan' => 'Admin',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'admin',
+            'password' => bcrypt('123'),
+        ]);
+
+        User::create([
+            'nama' => 'Budi',
             'jabatan' => 'Pelamar',
             'status' => '',
             'status_kerja' => '',
@@ -33,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'umur' => '20',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
-            'username' => 'test',
+            'username' => 'budi',
             'password' => bcrypt('123'),
         ]);
 
@@ -46,7 +59,7 @@ class DatabaseSeeder extends Seeder
         );
 
         Rekrutmen::create([
-            'id_pelamar' => 1,
+            'id_pelamar' => 2,
             'id_lowongan' => 1,
             'status' => 'Diterima',
             'file' => 'file.pdf',

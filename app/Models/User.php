@@ -11,7 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_karyawan', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
