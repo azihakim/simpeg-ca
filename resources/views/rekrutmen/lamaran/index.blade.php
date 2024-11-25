@@ -53,13 +53,14 @@
 											@if ($item->status == 'Diajukan' && Auth::user()->jabatan == 'Pelamar')
 												<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 											@endif
-											@if (Auth::user()->jabatan != 'Pelamar')
+											@if (Auth()->user()->jabatan == 'Admin')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Respon</button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
 														<h6 class="dropdown-header">Cek Lamaran</h6>
-														<a class="dropdown-item" href="#">Cek Berkas</a>
+														<a class="dropdown-item" href="{{ asset('storage/lamaran_files/' . $item->file) }}" target="_blank">Cek
+															Berkas</a>
 														<div class="dropdown-divider"></div>
 
 														<h6 class="dropdown-header">Ubah Status</h6>
