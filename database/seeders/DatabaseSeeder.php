@@ -36,6 +36,18 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => bcrypt('123'),
         ]);
+        User::create([
+            'nama' => 'Direktur',
+            'jabatan' => 'Direktur',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'direktur',
+            'password' => bcrypt('123'),
+        ]);
 
         User::create([
             'nama' => 'Budi',
@@ -47,6 +59,32 @@ class DatabaseSeeder extends Seeder
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
             'username' => 'budi',
+            'password' => bcrypt('123'),
+        ]);
+        User::create([
+            'nama' => 'Karyawan 1',
+            'jabatan' => 'Karyawan',
+            'divisi' => 'IT',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'karyawan',
+            'password' => bcrypt('123'),
+        ]);
+        User::create([
+            'nama' => 'Karyawan 2',
+            'jabatan' => 'Karyawan',
+            'divisi' => 'Akunting',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'karyawan 2',
             'password' => bcrypt('123'),
         ]);
 

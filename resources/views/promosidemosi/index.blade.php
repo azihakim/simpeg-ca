@@ -63,7 +63,7 @@
 														onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
 												</form>
 											@endif
-											@if (Auth()->user()->jabatan == 'Manajer')
+											@if (Auth()->user()->jabatan == 'Direktur')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>
