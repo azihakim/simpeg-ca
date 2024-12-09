@@ -45,7 +45,7 @@ class KaryawanController extends Controller
         try {
             // Find the user by pelamar ID
             $karyawan = User::find($request->pelamar);
-
+            $pelamar = Rekrutmen::where('id', $request->id_pelamar)->first();
             if (!$karyawan) {
                 return redirect()->back()->with('error', 'Data pelamar tidak ditemukan.');
             }
@@ -56,13 +56,14 @@ class KaryawanController extends Controller
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
             $karyawan->status_kerja = $request->status_kerja;
+            $karyawan->divisi = $pelamar->lowongan->jabatan;
             $karyawan->status = 'Aktif';
             $karyawan->nik = $request->nik;
             $karyawan->jabatan = 'Karyawan';
             // Save the changes
             $karyawan->save();
 
-            $pelamar = Rekrutmen::where('id', $request->id_pelamar)->first();
+
             $pelamar->delete();
 
 
