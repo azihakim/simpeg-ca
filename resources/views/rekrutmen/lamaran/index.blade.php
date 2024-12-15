@@ -39,7 +39,7 @@
 								@foreach ($lamaran as $item)
 									<tr>
 										<td>{{ $item->user->nama }}</td>
-										<td>{{ $item->lowongan->jabatan }}</td>
+										<td>{{ $item->lowongan->divisi->nama_jabatan }}</td>
 										<td>
 											@if ($item->status == 'Diajukan')
 												<label class="badge badge-warning">{{ $item->status }}</label>

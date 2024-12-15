@@ -43,7 +43,7 @@
 							<tbody>
 								@foreach ($lowongan as $item)
 									<tr>
-										<td>{{ $item->jabatan }}</td>
+										<td>{{ $item->divisi->nama_jabatan }}</td>
 										<td style="text-align: center">
 											@if ($item->status == 'Aktif')
 												<label class="badge badge-primary">{{ $item->status }}</label>

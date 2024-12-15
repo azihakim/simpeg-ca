@@ -10,4 +10,9 @@ class Lowongan extends Model
     use HasFactory;
 
     protected $fillable = ['jabatan', 'status', 'deskripsi'];
+
+    public function divisi()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan', 'id');
+    }
 }

@@ -49,8 +49,8 @@
 									<tr>
 										<td>{{ $item->karyawan->nama }}</td>
 										<td>{{ $item->jenis }}</td>
-										<td>{{ $item->divisi_lama }}</td>
-										<td>{{ $item->divisi_baru }}</td>
+										<td>{{ $item->divisiLama->nama_jabatan }}</td>
+										<td>{{ $item->divisiBaru->nama_jabatan }}</td>
 										<td>{{ $item->created_at->format('d/m/Y') }}</td>
 										<td>{{ $item->status }}</td>
 										<td>

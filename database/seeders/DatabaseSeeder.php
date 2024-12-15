@@ -24,6 +24,66 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $jabatan = [
+            [
+                'nama_jabatan' => 'Management Repr'
+            ],
+            [
+                'nama_jabatan' => 'HSE'
+            ],
+            [
+                'nama_jabatan' => 'Procurement'
+            ],
+            [
+                'nama_jabatan' => 'Management Construction'
+            ],
+            [
+                'nama_jabatan' => 'Construction'
+            ],
+            [
+                'nama_jabatan' => 'Management HDE/Opr'
+            ],
+            [
+                'nama_jabatan' => 'HDE/Opr'
+            ],
+            [
+                'nama_jabatan' => 'Management Finance'
+            ],
+            [
+                'nama_jabatan' => 'Finance'
+            ],
+        ];
+        foreach ($jabatan as $j) {
+            Jabatan::create($j);
+        }
+
+        Lowongan::create(
+            [
+                'jabatan' => 1,
+                'status' => 'aktif',
+                'deskripsi' => 'Finance JobDesk',
+            ]
+        );
+
+        User::create([
+            'nama' => 'Budi',
+            'jabatan' => 'Pelamar',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'budi',
+            'password' => bcrypt('123'),
+        ]);
+        Rekrutmen::create([
+            'id_pelamar' => 1,
+            'id_lowongan' => 1,
+            'status' => 'Diterima',
+            'file' => 'file.pdf',
+        ]);
+
         User::create([
             'nama' => 'Admin',
             'jabatan' => 'Admin',
@@ -39,6 +99,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'nama' => 'Direktur',
             'jabatan' => 'Direktur',
+            'divisi_id' => 1,
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
@@ -50,21 +111,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'nama' => 'Budi',
-            'jabatan' => 'Pelamar',
-            'status' => '',
-            'status_kerja' => '',
-            'nik' => '',
-            'umur' => '20',
-            'telepon' => '0812343710',
-            'alamat' => 'Jl. Sukamaju',
-            'username' => 'budi',
-            'password' => bcrypt('123'),
-        ]);
-        User::create([
             'nama' => 'Karyawan 1',
             'jabatan' => 'Karyawan',
-            'divisi' => 'IT',
+            'divisi_id' => 2,
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
@@ -77,7 +126,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'nama' => 'Karyawan 2',
             'jabatan' => 'Karyawan',
-            'divisi' => 'Akunting',
+            'divisi_id' => 1,
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
@@ -87,41 +136,5 @@ class DatabaseSeeder extends Seeder
             'username' => 'karyawan 2',
             'password' => bcrypt('123'),
         ]);
-
-        Lowongan::create(
-            [
-                'jabatan' => 'Software Engineer',
-                'status' => 'aktif',
-                'deskripsi' => 'Membuat aplikasi berbasis web'
-            ]
-        );
-
-        Rekrutmen::create([
-            'id_pelamar' => 2,
-            'id_lowongan' => 1,
-            'status' => 'Diterima',
-            'file' => 'file.pdf',
-        ]);
-
-        $jabatan = [
-            [
-                'jabatan' => 'Software Engineer'
-            ],
-            [
-                'jabatan' => 'UI/UX Designer'
-            ],
-            [
-                'jabatan' => 'Data Scientist'
-            ],
-            [
-                'jabatan' => 'Product Manager'
-            ],
-            [
-                'jabatan' => 'Quality Assurance'
-            ],
-        ];
-        foreach ($jabatan as $j) {
-            Jabatan::create($j);
-        }
     }
 }

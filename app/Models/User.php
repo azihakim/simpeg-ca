@@ -15,6 +15,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Absensi::class, 'id_karyawan', 'id');
     }
+    public function divisi()
+    {
+        return $this->belongsTo(Jabatan::class, 'divisi_id', 'id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'divisi',
+        'divisi_id',
     ];
 
     /**

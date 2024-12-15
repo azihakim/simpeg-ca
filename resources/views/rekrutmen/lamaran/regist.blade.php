@@ -11,7 +11,7 @@
 							@csrf
 							<div class="form-group col-md-4">
 								<label>Jabatan</label>
-								<input type="text" class="form-control" value="{{ $lowongan->jabatan }}" disabled>
+								<input type="text" class="form-control" value="{{ $lowongan->divisi->nama_jabatan }}" disabled>
 								<input type="hidden" name="id_lowongan" class="form-control" value="{{ $lowongan->id }}">
 							</div>
 							<div class="form-group">
