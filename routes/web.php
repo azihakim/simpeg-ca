@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\CutiIzinController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromosiDemosiController;
@@ -97,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy/{id}', [RewardPunishmentController::class, 'destroy'])->name('rewardpunishment.destroy');
         Route::put('/status/{id}', [RewardPunishmentController::class, 'status'])->name('rewardpunishment.status');
     });
+
+    Route::resource('jabatan', JabatanController::class);
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');
 Route::post('/registrasi', [RegistrasiController::class, 'store'])->name('registrasi.store');

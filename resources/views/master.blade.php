@@ -113,6 +113,12 @@
 							<span class="menu-title">Reward/Punishment</span>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('jabatan.index') }}">
+							<i class="fa fa-gears menu-icon"></i>
+							<span class="menu-title">Jabatan</span>
+						</a>
+					</li>
 				@endif
 			</ul>
 		</nav>
