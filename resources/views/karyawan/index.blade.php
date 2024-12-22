@@ -25,10 +25,12 @@
 							<div>
 								<h4 class="card-title">List Karyawn</h4>
 							</div>
-							<div>
-								<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
-									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
-							</div>
+							@if (Auth::user()->jabatan == 'Admin')
+								<div>
+									<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
+										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
+								</div>
+							@endif
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
@@ -37,7 +39,9 @@
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -47,14 +51,16 @@
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
-										<td>
-											<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-											{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+										@if (Auth::user()->jabatan == 'Admin')
+											<td>
+												<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+												{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 											</form> --}}
-										</td>
+											</td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

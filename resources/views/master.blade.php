@@ -59,7 +59,7 @@
 						</a>
 					</li>
 				@endif
-				@if (Auth::user()->jabatan != 'Karyawan')
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 					<li class="pt-2 pb-1">
 						<span class="nav-item-head">Rekrutmen</span>
 					</li>
@@ -77,8 +77,7 @@
 						</div>
 					</li>
 				@endif
-
-				@if (Auth::user()->jabatan != 'Pelamar')
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
 					<li class="pt-2 pb-1">
 						<span class="nav-item-head">Karyawan</span>
 					</li>
@@ -90,33 +89,75 @@
 						</a>
 						<div class="collapse" id="karyawan">
 							<ul class="nav flex-column sub-menu">
-								@if (Auth::user()->jabatan != 'Karyawan')
+								@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 									<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
 								@endif
-								<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
-								<li class="nav-item"> <a class="nav-link" href="{{ route('cutiizin.index') }}">Cuti/Izin</a></li>
+								@if (Auth::user()->jabatan == 'Admin' ||
+										Auth::user()->jabatan == 'Man Keuangan' ||
+										Auth::user()->jabatan == 'Direktur' ||
+										Auth::user()->jabatan == 'Karyawan')
+									<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
+								@endif
+								@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+									<li class="nav-item"> <a class="nav-link" href="{{ route('cutiizin.index') }}">Cuti/Izin</a></li>
+								@endif
 							</ul>
 						</div>
 					</li>
 				@endif
-
-				@if (Auth::user()->jabatan != 'Pelamar')
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('promosidemosi.index') }}">
 							<i class="fa fa-sitemap menu-icon"></i>
 							<span class="menu-title">Promosi/Demosi</span>
 						</a>
 					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('rewardpunishment.index') }}">
 							<i class="fa fa-legal menu-icon"></i>
 							<span class="menu-title">Reward/Punishment</span>
 						</a>
 					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin')
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('jabatan.index') }}">
 							<i class="fa fa-gears menu-icon"></i>
 							<span class="menu-title">Jabatan</span>
+						</a>
+					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('resign.index') }}">
+							<i class="fa fa-times-circle-o menu-icon"></i>
+							<span class="menu-title">Resign</span>
+						</a>
+					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('penugasan.index') }}">
+							<i class="fa fa-vcard menu-icon"></i>
+							<span class="menu-title">Penugasan</span>
+						</a>
+					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('phk.index') }}">
+							<i class="fa fa-warning menu-icon"></i>
+							<span class="menu-title">PHK</span>
+						</a>
+					</li>
+				@endif
+				@if (Auth::user()->jabatan == 'Admin')
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('user.index') }}">
+							<i class="fa fa-user menu-icon"></i>
+							<span class="menu-title">Data Pengguna</span>
 						</a>
 					</li>
 				@endif

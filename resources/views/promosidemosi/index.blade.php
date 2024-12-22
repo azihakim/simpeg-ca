@@ -41,7 +41,9 @@
 									<th>Jabatan Baru</th>
 									<th>Tanggal</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -63,7 +65,7 @@
 														onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
 												</form>
 											@endif
-											@if (Auth()->user()->jabatan == 'Direktur')
+											@if (Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Admin')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>

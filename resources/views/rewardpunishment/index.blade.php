@@ -42,7 +42,9 @@
 									<th>Reward</th>
 									<th>Surat Punishment</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									@if (Auth()->user()->jabatan == 'Admin')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -72,7 +74,7 @@
 												</form>
 											@endif
 
-											@if (Auth()->user()->jabatan == 'Direktur')
+											@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>

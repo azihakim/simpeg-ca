@@ -33,10 +33,12 @@
 									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
 							</div> --}}
 							<div>
-								<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-									Absen
-								</button>
-								@if (Auth::user()->jabatan == 'Admin')
+								@if (Auth::user()->jabatan == 'Karyawan' || Auth::user()->jabatan == 'Admin')
+									<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										Absen
+									</button>
+								@endif
+								@if (Auth::user()->jabatan == 'Man Keuangan' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 									<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#rekapAbsensi">
 										Rekap Absen
 									</button>
