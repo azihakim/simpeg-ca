@@ -32,7 +32,7 @@
 									<th>Pelamar</th>
 									<th>Jabatan</th>
 									<th>Status</th>
-									@if (Auth::user()->jabatan != 'Direktur')
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -51,7 +51,7 @@
 												<label class="badge badge-success">{{ $item->status }}</label>
 											@endif
 										</td>
-										@if (Auth::user()->jabatan != 'Direktur')
+										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
 											<td>
 												@if ($item->status == 'Diajukan' && Auth::user()->jabatan == 'Pelamar')
 													<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>

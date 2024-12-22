@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Promosi Demosi</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
 									<a href="{{ route('promosidemosi.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Promosi/Demosi Karyawan</a>
@@ -41,7 +41,7 @@
 									<th>Jabatan Baru</th>
 									<th>Tanggal</th>
 									<th>Status</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -56,7 +56,7 @@
 										<td>{{ $item->created_at->format('d/m/Y') }}</td>
 										<td>{{ $item->status }}</td>
 										<td>
-											@if (Auth::user()->jabatan == 'Admin')
+											@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 												<a href="{{ route('promosidemosi.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
 												<form action="{{ route('promosidemosi.destroy', $item->id) }}" method="POST" class="d-inline">
 													@csrf

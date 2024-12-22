@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Data PHK</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
 									<a href="{{ route('phk.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah PHK</a>
@@ -40,7 +40,7 @@
 									<th>Status</th>
 									<th>Surat</th>
 									<th>Keterangan</th>
-									@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
+									@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -64,7 +64,7 @@
 												Surat</a>
 										</td>
 										<td>{{ $item->keterangan }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
@@ -89,7 +89,7 @@
 														@endif
 													</div>
 												</div>
-												@if (Auth()->user()->jabatan == 'Admin')
+												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 													<a href="{{ route('phk.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 													<form action="{{ route('phk.destroy', $item->id) }}" method="POST" class="d-inline">
 														@csrf
