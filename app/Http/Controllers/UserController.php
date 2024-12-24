@@ -64,4 +64,16 @@ class UserController extends Controller
             return redirect()->route('user.edit', $id)->with('error', 'Failed to update user: ' . $e->getMessage());
         }
     }
+
+    function destroy($id)
+    {
+        try {
+            $user = User::find($id);
+            $user->delete();
+
+            return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('error', 'Failed to delete user: ' . $e->getMessage());
+        }
+    }
 }
