@@ -12,7 +12,11 @@ class ResignController extends Controller
      */
     public function index()
     {
-        $data = Resign::all();
+        if (auth()->user()->jabatan == 'karyawan') {
+            $data = Resign::where('id_karyawan', auth()->user()->id)->get();
+        } else {
+            $data = Resign::all();
+        }
         return view('resign.index', compact('data'));
     }
 

@@ -14,8 +14,9 @@ class CutiIzinController extends Controller
      */
     public function index()
     {
-        $data = CutiIzin::where('id_karyawan', Auth::user()->id)->get();
-        if (Auth::user()->jabatan == 'Admin') {
+        if (auth()->user()->jabatan == 'karyawan') {
+            $data = CutiIzin::where('id_karyawan', auth()->user()->id)->get();
+        } else {
             $data = CutiIzin::all();
         }
         return view('cutiizin.index', compact('data'));

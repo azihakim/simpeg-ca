@@ -14,7 +14,11 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        $data = Penugasan::all();
+        if (auth()->user()->jabatan == 'Karyawan') {
+            $data = Penugasan::where('user_id', auth()->user()->id)->get();
+        } else {
+            $data = Penugasan::all();
+        }
         return view('penugasan.index', compact('data'));
     }
 
@@ -23,7 +27,7 @@ class PenugasanController extends Controller
      */
     public function create()
     {
-        $karyawan = User::where('jabatan', 'karyawan')->get();
+        $karyawan = User::where('jabatan', 'Karyawan')->get();
         return view('penugasan.create', compact('karyawan'));
     }
 
