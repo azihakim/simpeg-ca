@@ -28,15 +28,20 @@
 			<div class="content-wrapper d-flex align-items-center auth">
 				<div class="row flex-grow">
 					<div class="col-lg-4 mx-auto">
-						@if (session('success'))
-							<div class="alert alert-success">
-								{{ session('success') }}
+						@if ($errors->any())
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
 							</div>
 						@endif
+
 						<div class="auth-form-light text-left p-5">
-							{{-- <div class="brand-logo">
-								<img src="../../assets/images/logo.svg">
-							</div> --}}
+							<div class="row justify-content-center" style="text-align: center">
+								<img src="{{ asset('assets/images/logo.jpg') }}" style="width:50%">
+							</div>
 							<h4>SIMPEG</h4>
 							<h6 class="fw-light">Sistem Kepegawaian</h6>
 							<form class="pt-3" method="POST" action="{{ route('login') }}">

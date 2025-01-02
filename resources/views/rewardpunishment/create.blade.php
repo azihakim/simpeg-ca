@@ -36,9 +36,14 @@
 									<select required name="id_karyawan" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
-											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">{{ $item->nama }}</option>
+											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}"
+												data-punishment="{{ $item->has_punishment }}">{{ $item->nama }}</option>
 										@endforeach
 									</select>
+									<span class="right badge badge-danger" id="notifSP" style="display: none;">Karyawan Sudah
+										Pernah
+										Mendapatkan SP
+										Sebelumnya</span>
 								</div>
 								<div class="col-md-2">
 									<div class="form-group">
@@ -103,6 +108,27 @@
 
 @section('js')
 	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const selectKaryawan = document.getElementById('id_karyawan');
+			const notifSP = document.getElementById('notifSP');
+
+			selectKaryawan.addEventListener('change', function() {
+				// Ambil elemen option yang dipilih
+				const selectedOption = selectKaryawan.options[selectKaryawan.selectedIndex];
+
+				// Periksa atribut data-punishment
+				const hasPunishment = selectedOption.getAttribute('data-punishment');
+
+				if (hasPunishment === '1') {
+					// Tampilkan notifikasi jika has_punishment = 1
+					notifSP.style.display = 'inline';
+				} else {
+					// Sembunyikan notifikasi jika has_punishment != 1
+					notifSP.style.display = 'none';
+				}
+			});
+		});
+
 		document.addEventListener('DOMContentLoaded', function() {
 			const jenisSelect = document.getElementById('jenis');
 			const divReward = document.getElementById('divReward');

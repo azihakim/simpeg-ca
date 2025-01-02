@@ -15,6 +15,9 @@ class RegistrasiController extends Controller
     public function store(Request $request)
     {
         try {
+            $request->validate([
+                'username' => 'unique:users,username',
+            ]);
             $data = new User();
             $data->nama = $request->nama;
             $data->telepon = $request->telepon;
