@@ -82,7 +82,7 @@ class KaryawanController extends Controller
                 'umur' => 'required|integer',
                 'jenis_kelamin' => 'required|string',
                 'telepon' => 'required|string',
-                'nik' => 'unique:users,nik',
+                'nik' => 'required|unique:users,nik,' . $id,
                 'status_kerja' => 'required|string',
             ]);
 
@@ -95,7 +95,9 @@ class KaryawanController extends Controller
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
             $karyawan->nik = $request->nik;
+            $karyawan->status = $request->status;
             $karyawan->status_kerja = $request->status_kerja;
+
 
             // Save the updated data
             $karyawan->save();
