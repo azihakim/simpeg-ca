@@ -81,6 +81,12 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
+										<label>Alamat</label>
+										<input type="text" class="form-control" name="alamat">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
 										<label>Status Kerja</label>
 										{{-- <input required type="text" class="form-control" name="status_kerja"> --}}
 										<select required class="form-control" name="status_kerja">

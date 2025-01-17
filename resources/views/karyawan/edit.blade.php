@@ -74,6 +74,12 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
+										<label>Alamat</label>
+										<input type="text" class="form-control" name="alamat" value="{{ $data->alamat }}">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
 										<label>Status Kerja</label>
 										<select required class="form-control" name="status_kerja">
 											<option value="">Pilih Status Kerja</option>

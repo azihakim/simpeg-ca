@@ -52,6 +52,7 @@ class KaryawanController extends Controller
             $karyawan->divisi_id = $pelamar->lowongan->jabatan;
             $karyawan->status = 'Aktif';
             $karyawan->nik = $request->nik;
+            $karyawan->alamat = $request->alamat;
             $karyawan->jabatan = 'Karyawan';
             // dd($karyawan);
             // Save the changes
@@ -97,6 +98,7 @@ class KaryawanController extends Controller
             $karyawan->nik = $request->nik;
             $karyawan->status = $request->status;
             $karyawan->status_kerja = $request->status_kerja;
+            $karyawan->alamat = $request->alamat;
 
 
             // Save the updated data
