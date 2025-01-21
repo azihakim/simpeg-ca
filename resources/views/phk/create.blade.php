@@ -36,7 +36,7 @@
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
 											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">{{ $item->nama }} -
-												{{ $item->divisi->nama_jabatan }}</option>
+												{{ $item->divisi->nama_jabatan ?? 'N/A' }}</option>
 										@endforeach
 									</select>
 								</div>
