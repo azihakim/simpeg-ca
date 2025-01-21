@@ -13,7 +13,7 @@ class PhkController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->jabatan == 'karyawan') {
+        if (auth()->user()->jabatan == 'Karyawan') {
             $data = Phk::where('user_id', auth()->user()->id)->get();
         } else {
             $data = Phk::all();
@@ -26,7 +26,7 @@ class PhkController extends Controller
      */
     public function create()
     {
-        $karyawan = User::where('jabatan', 'karyawan')->get();
+        $karyawan = User::where('jabatan', 'Karyawan')->get();
         return view('phk.create', compact('karyawan'));
     }
 
