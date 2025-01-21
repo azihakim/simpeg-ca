@@ -69,7 +69,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>NIK</label>
-										<input required type="text" class="form-control" name="nik" value="{{ $data->nik }}">
+										<input required type="number" class="form-control" name="nik" value="{{ $data->nik }}">
 									</div>
 								</div>
 								<div class="col-md-4">
