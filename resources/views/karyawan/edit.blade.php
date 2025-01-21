@@ -47,7 +47,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Umur</label>
-										<input required type="text" class="form-control" name="umur" value="{{ $data->umur }}">
+										<input required type="number" class="form-control" name="umur" value="{{ $data->umur }}">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -63,7 +63,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Telepon</label>
-										<input required type="text" class="form-control" name="telepon" value="{{ $data->telepon }}">
+										<input required type="number" class="form-control" name="telepon" value="{{ $data->telepon }}">
 									</div>
 								</div>
 								<div class="col-md-4">

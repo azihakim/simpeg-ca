@@ -53,7 +53,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Umur</label>
-										<input required type="text" class="form-control" name="umur">
+										<input required type="number" class="form-control" name="umur">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -70,7 +70,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Telepon</label>
-										<input required type="text" class="form-control" name="telepon">
+										<input required type="number" class="form-control" name="telepon">
 									</div>
 								</div>
 								<div class="col-md-4">
