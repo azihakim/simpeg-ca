@@ -37,6 +37,9 @@
 								<tr>
 									<th>Status</th>
 									<th>Nama</th>
+									<th>Jabatan</th>
+									<th>Telepon</th>
+									<th>Alamat</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
 									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
@@ -49,6 +52,9 @@
 									<tr>
 										<td>{{ $item->status }}</td>
 										<td>{{ $item->nama }}</td>
+										<td>{{ $item->jabatan }} - {{ $item->divisi->nama_jabatan ?? '' }}</td>
+										<td>{{ $item->telepon }}</td>
+										<td>{{ $item->alamat }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
 										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')

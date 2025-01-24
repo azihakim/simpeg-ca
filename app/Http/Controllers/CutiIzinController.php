@@ -30,11 +30,44 @@ class CutiIzinController extends Controller
         return view('cutiizin.create');
     }
 
+    public function checkQuota($id_karyawan)
+    {
+        $kuota = 14;
+        $tahun = date('Y');
+        $totalRecently = CutiIzin::where('id_karyawan', $id_karyawan)
+            ->whereYear('tanggal_mulai', $tahun)
+            ->where('status', 'Diterima')
+            ->get()
+            ->sum(function ($cuti) {
+                $start = strtotime($cuti->tanggal_mulai);
+                $end = strtotime($cuti->tanggal_selesai);
+                return ($end - $start) / (60 * 60 * 24) + 1;
+            });
+
+        $remainingQuota = $kuota - $totalRecently;
+
+        return response()->json([
+            'totalRecently' => $totalRecently,
+            'remaining_quota' => $remainingQuota
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $kuotaResponse = $this->checkQuota(Auth::user()->id);
+        $kuota = $kuotaResponse->getData(true);
+
+        $start = strtotime($request->tanggal_mulai);
+        $end = strtotime($request->tanggal_selesai);
+        $daysRequested = ($end - $start) / (60 * 60 * 24) + 1;
+
+        if ($kuota['remaining_quota'] < $daysRequested) {
+            return redirect()->back()->with('error', 'Kuota tidak mencukupi. Sisa kuota: ' . $kuota['remaining_quota'] . ' hari');
+        }
+
         if ($request->hasFile('surat')) {
             $file = $request->file('surat');
             $filename = auth()->user()->nama . '_' . time() . '.' . $file->getClientOriginalExtension();
