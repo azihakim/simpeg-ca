@@ -44,6 +44,9 @@
 									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 										<th>Aksi</th>
 									@endif
+									@if (Auth::user()->jabatan == 'Karyawan')
+										<th>Surat</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -56,6 +59,11 @@
 										<td>{{ $item->created_at->format('d/m/Y') }}</td>
 										<td>{{ $item->status }}</td>
 										<td>
+											@if (Auth::user()->jabatan == 'Karyawan')
+												<a href="{{ Storage::url($item->surat_rekomendasi) }}" class="btn btn-outline-primary btn-icon-text"
+													target="_blank"><i class="fa fa-file-pdf-o btn-icon-prepend"></i>
+													Cek Surat </a>
+											@endif
 											@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 												<a href="{{ route('promosidemosi.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
 												<form action="{{ route('promosidemosi.destroy', $item->id) }}" method="POST" class="d-inline">

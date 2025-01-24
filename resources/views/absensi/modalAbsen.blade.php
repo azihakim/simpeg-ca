@@ -302,4 +302,30 @@
 				alert('Terjadi kesalahan saat mengirim data.');
 			});
 	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const modal = document.getElementById('exampleModal');
+
+		modal.addEventListener('show.bs.modal', async () => {
+			try {
+				const response = await fetch('/check-attendance');
+				const data = await response.json();
+
+				if (data.hasCheckedIn && data.hasCheckedOut) {
+					alert('Anda sudah absen masuk dan pulang hari ini.');
+					document.querySelector('.modal-body').style.display = 'none';
+					document.getElementById('optionsRadios1').disabled = true;
+					document.getElementById('optionsRadios2').disabled = true;
+				} else if (data.hasCheckedIn) {
+					document.getElementById('optionsRadios1').disabled = true;
+					document.getElementById('optionsRadios2').checked = true;
+				} else if (data.hasCheckedOut) {
+					document.getElementById('optionsRadios2').disabled = true;
+					document.getElementById('optionsRadios1').checked = true;
+				}
+			} catch (error) {
+				// alert('Terjadi kesalahan saat memuat data absensi. Silakan coba lagi.');
+			}
+		});
+	});
 </script>

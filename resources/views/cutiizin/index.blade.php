@@ -40,6 +40,7 @@
 									<th>Status</th>
 									<th>Jenis</th>
 									<th>Tanggal</th>
+									<th>Surat</th>
 									@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 										<th>Aksi</th>
 									@endif
@@ -53,16 +54,21 @@
 										{{-- <td>{{ $item->status }}</td> --}}
 										<td>
 											@if ($item->status == 'Menunggu')
-												<span class="badge badge-opacity-warning me-3">{{ $item->status }}</span>
+												<span class="badge badge-warning me-3">{{ $item->status }}</span>
 											@elseif($item->status == 'Diterima')
-												<span class="badge badge-opacity-success me-3">{{ $item->status }}</span>
+												<span class="badge badge-success me-3">{{ $item->status }}</span>
 											@elseif($item->status == 'Ditolak')
-												<span class="badge badge-opacity-danger me-3">{{ $item->status }}</span>
+												<span class="badge badge-danger me-3">{{ $item->status }}</span>
 											@endif
 										</td>
 										<td>{{ $item->jenis }}</td>
 										<td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d/m/Y') }} -
 											{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d/m/Y') }}</td>
+										<td>
+											<a href="{{ asset('storage/surat_cutiizin/' . $item->surat) }}" class="btn btn-outline-primary btn-icon-text"
+												target="_blank"><i class="fa fa-file-pdf-o btn-icon-prepend"></i>
+												Cek Berkas </a>
+										</td>
 										@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 											<td>
 												<div class="dropdown">

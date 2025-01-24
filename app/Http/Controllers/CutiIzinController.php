@@ -35,6 +35,12 @@ class CutiIzinController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('surat')) {
+            $file = $request->file('surat');
+            $filename = auth()->user()->nama . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('surat_cutiizin', $filename, 'public');
+        }
+
         $data = new CutiIzin();
         $data->id_karyawan = Auth::user()->id;
         $data->jenis = $request->jenis;
@@ -42,6 +48,7 @@ class CutiIzinController extends Controller
         $data->tanggal_selesai = $request->tanggal_selesai;
         $data->keterangan = $request->keterangan;
         $data->status = 'Menunggu';
+        $data->surat = $filename;
         $data->save();
 
         return redirect()->route('cutiizin.index')->with('success', 'Data berhasil disimpan.');

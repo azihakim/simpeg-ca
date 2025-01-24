@@ -16,6 +16,7 @@ class CutiIzin extends Model
         'tanggal_selesai',
         'keterangan',
         'status',
+        'surat',
     ];
     function user()
     {

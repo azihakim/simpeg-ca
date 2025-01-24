@@ -27,7 +27,7 @@
 					<div class="card-body">
 						<h4 class="card-title">Form Cuti/Izin</h4>
 						<p class="card-description"> Masukkan Data Dengan Benar </p>
-						<form action="{{ route('cutiizin.store') }}" method="POST" class="forms-sample">
+						<form action="{{ route('cutiizin.store') }}" method="POST" class="forms-sample" enctype="multipart/form-data">
 							@csrf
 							<div class="row">
 								<div class="col-md-4">
@@ -41,6 +41,12 @@
 										<label>Jabatan</label>
 										<input required disabled value="{{ Auth::user()->jabatan }}" type="text" class="form-control"
 											name="jabatan">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Surat</label>
+										<input required name="surat" type="file" class="form-control file-upload-info" placeholder="Upload File">
 									</div>
 								</div>
 							</div>
