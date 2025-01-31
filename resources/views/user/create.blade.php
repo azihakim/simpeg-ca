@@ -59,6 +59,17 @@
 									</select>
 								</div>
 							</div>
+							<div class="row" id="divisiFormGroup" style="display: none;">
+								<div class="form-group col-md-12">
+									<label>Divisi</label>
+									<select required name="divisi_id" class="form-control">
+										<option disabled selected>Pilih Divisi</option>
+										@foreach ($divisi as $item)
+											<option value="{{ $item->id }}">{{ $item->nama_jabatan }}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
 							<div class="d-flex justify-content-end">
 								<button type="submit" class="btn btn-outline-primary">Simpan</button>
 							</div>
@@ -73,4 +84,24 @@
 @endsection
 
 @section('js')
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const roleSelect = document.querySelector('select[name="jabatan"]');
+			const divisiFormGroup = document.getElementById('divisiFormGroup');
+			const divisiSelect = divisiFormGroup.querySelector('select');
+
+			roleSelect.addEventListener('change', function() {
+				if (this.value === 'Karyawan') {
+					divisiFormGroup.style.display = 'block';
+					divisiSelect.setAttribute('required', 'required');
+				} else {
+					divisiFormGroup.style.display = 'none';
+					divisiSelect.removeAttribute('required');
+				}
+			});
+
+			// Trigger change event on page load to set initial state
+			roleSelect.dispatchEvent(new Event('change'));
+		});
+	</script>
 @endsection

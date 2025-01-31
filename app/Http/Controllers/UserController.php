@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class UserController extends Controller
     function create()
     {
         $user = new User();
-        return view('user.create', compact('user'));
+        $divisi = Jabatan::all();
+        return view('user.create', compact('user', 'divisi'));
     }
 
     function store(Request $request)
@@ -32,6 +34,7 @@ class UserController extends Controller
             $user->nama = $request->nama;
             $user->username = $request->username;
             $user->jabatan = $request->jabatan;
+            $user->divisi_id = $request->divisi_id;
             $user->password = bcrypt($request->password);
             $user->save();
 
