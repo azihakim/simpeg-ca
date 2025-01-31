@@ -30,7 +30,6 @@ class PromosiDemosiController extends Controller
     {
         $karyawan = User::with('divisi')->where('jabatan', 'Karyawan')->get();
 
-
         $divisi = Jabatan::all();
         return view('promosidemosi.create', compact('karyawan', 'divisi'));
     }
