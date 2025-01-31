@@ -25,12 +25,12 @@
 							<div>
 								<h4 class="card-title">Data Pengguna</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							{{-- @if (Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('user.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Pengguna</a>
 								</div>
-							@endif
+							@endif --}}
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
